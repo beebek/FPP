@@ -1,7 +1,5 @@
 package week2.Day3;
 
-import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
-
 public class Book {
 	private String title;
     private String author;
