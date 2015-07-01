@@ -22,3 +22,12 @@ public class UseInsurance {
 		}
 	}
 }
+
+// Output
+
+/*
+ 	Type h or l for query...
+	h -> Health Insurance, l -> Life Insurance
+	Select type of Insurance: l
+	Monthly fee of Life Insurance costs $196.0
+*/
