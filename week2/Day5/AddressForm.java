@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class AddressForm extends JFrame {
-	private String name, street, city, state, zip;
 	
 	public AddressForm() {
 		setLayout(null);
