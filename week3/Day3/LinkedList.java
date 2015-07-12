@@ -30,9 +30,12 @@ public class LinkedList {
 	
 	public void add(Object data, int index) { // replace
 		// insert the specified element at the specified position in this list
-		Node temp = head;
 		if(head==null) {
 			head = new Node(data, null);
+		}
+		else {
+			Node workingNode = findNodeByIndex(index);
+			workingNode.data = (String)data;
 		}
 	}
 
@@ -53,27 +56,71 @@ public class LinkedList {
 		else {
 			Node temp = head;
 			int index = 0;
-			while (temp != null)
-				System.out.println(temp);
+			while (temp != null) {
 				if (str.equals(temp.data))
 					return index;
-				else
-					temp = temp.next;
+				temp = temp.next;
 				index++;
+			}
 			return -1;
+		}
+	}
+	
+	public Node findNodeByIndex(int index) {
+		if (head == null)
+			return head;
+		else {
+			Node temp = head;
+			int indexOfList = 0;
+			while (temp != null) {
+				indexOfList++;
+				if(index==indexOfList) {
+					return temp;
+				}
+				temp = temp.next;
+			}
+			return null;
 		}
 	}
 	
 	public Object get(int index) {
 		// returns the element at the specified position in this list
+		return findNodeByIndex(index);
 	}
 	
 	public boolean remove(int index) {
 		// removes the element at the specified position in this list
+		if(head==null)
+			return false;
+		
+		Node prevNodeObj;
+		if(index==0){
+			Node temp = findNodeByIndex(1);
+			System.out.println("********");
+			System.out.println(temp.data);
+			System.out.println("********");
+			
+			head = temp;
+			head.next = temp;
+		}
+		else {
+			prevNodeObj = findNodeByIndex(index);
+			prevNodeObj.next = prevNodeObj.next.next;
+		}
+		
+		System.out.println("Node [" + findNodeByIndex(index).data + "] removed...");
+		return true;
 	}
 	
 	public int size() {
 		// returns the number of elements in this list
+		Node temp = head;
+		int counter = 0;
+		while(temp!=null) {
+			temp = temp.next;
+			counter++;
+		}
+		return counter;
 	}
 	
 	public String toString() {
@@ -137,9 +184,39 @@ public class LinkedList {
 		System.out.println(singleLinkList);
 		singleLinkList.add("March");		
 		System.out.println(singleLinkList);
+		singleLinkList.add("April");		
+		System.out.println(singleLinkList);
 		
-//		singleLinkList.add("add", 1);
-//		System.out.println(singleLinkList.findIndex("Feb"));
+		singleLinkList.add("Feb_renamed", 1);
+		System.out.println(singleLinkList);
+		
+		System.out.println("Object at position 2: " + singleLinkList.get(2));
+		
+		System.out.println("Removing 3rd index element...");
+		System.out.println(singleLinkList.remove(3));
+		System.out.println(singleLinkList);
+//		System.out.println("Removing 0the index element...");
+//		System.out.println(singleLinkList.remove(0));
+//		System.out.println(singleLinkList);
+		
+		System.out.println("Size of list: " + singleLinkList.size());
+		System.out.println("Bye !!!");
 	}
-
 }
+
+// Output
+
+/*
+	-->[Jan]-->[NULL]
+	-->[Jan]-->[Feb]-->[NULL]
+	-->[Jan]-->[Feb]-->[March]-->[NULL]
+	-->[Jan]-->[Feb]-->[March]-->[April]-->[NULL]
+	-->[Feb_renamed]-->[Feb]-->[March]-->[April]-->[NULL]
+	Object at position 2: week3.Day3.LinkedList$Node@15db9742
+	Removing 3rd index element...
+	Node [March] removed...
+	true
+	-->[Feb_renamed]-->[Feb]-->[March]-->[NULL]
+	Size of list: 3
+	Bye !!!
+*/
