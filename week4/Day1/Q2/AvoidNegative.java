@@ -13,15 +13,28 @@ public class AvoidNegative {
 			int mark = sc.nextInt();
 			if(mark<0 || mark>100)
 				throw new Exception("Number Out of Range");
-			System.out.print("Your mark is " + mark);
+			System.out.print("Your mark is ");
+			System.out.println(mark);
 		}
 		catch(InputMismatchException e) {
-			System.out.println("Exception occurred: " + e.getMessage());
+			System.out.println("Exception occurred, you entered non-numbers !!!");
 		}
 		catch(Exception e){
-			System.out.println("Exception occurred: " + e.getMessage());
+			System.out.println("Exception occurred, " + e.getMessage());
 		}
-		
 	}
-
 }
+
+// Output
+
+/*
+	Enter mark in range 0 to 100...
+	Marks: 
+	a
+	Exception occurred, you entered non-numbers !!!
+	
+	Enter mark in range 0 to 100...
+	Marks: 
+	110
+	Exception occurred, Number Out of Range
+*/
